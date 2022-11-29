@@ -33,14 +33,11 @@ void Cylinder::run() {
   this->pulse_count = 0;
   this->last_pulse_check = current_time;
 }
-
 void Cylinder::stop() {
   this->current_power = 0;
   analogWrite(this->motor_pin, this->current_power);
 }
-
 uint8_t Cylinder::power() const { return this->current_power; }
 
-void Cylinder::handle_encoder(Cylinder *volatile self) { self->count_pulse(); }
-
 void Cylinder::count_pulse() { ++this->pulse_count; }
+void Cylinder::handle_encoder(Cylinder *volatile self) { self->count_pulse(); }

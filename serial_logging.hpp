@@ -2,7 +2,7 @@
 #define SERIAL_LOGGING_H_
 
 // Caso estejamos em modo de otimização, não queremos acessos à serial, ela
-// provavelmente nem está conectada. Assim, tranformamos as macros de logging
+// provavelmente nem está conectada. Assim, transformamos as macros de logging
 // para expanções vazias.
 #ifdef NDEBUG
 

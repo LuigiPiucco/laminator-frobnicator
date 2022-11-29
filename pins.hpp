@@ -1,6 +1,8 @@
 #ifndef PINS_H_
 #define PINS_H_
 
+// Atribuições de pinos para cada periférico.
+
 constexpr byte laminator_encoder = 2;
 constexpr byte extractor_encoder = 3;
 constexpr byte reset_quantity_btn = 4;

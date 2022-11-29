@@ -86,9 +86,8 @@ ISR(PCINT2_vect) PCISR_BODY(2);
 #define CLEAR_PCINT_PIN(int, pin) ((PCMSK##int &= ~(1 << (pin))))
 
 // ---
-// Definição da API pública de interrupções.
+// API pública. Ver cabeçalho para documentação.
 
-// Acopla a rotina isr à interrupção PC sob o pino pin.
 void pcint_attach(uint8_t pin, ISRHandler isr, volatile void *argument) {
   volatile uint8_t *pcint = portInputRegister(digitalPinToPort(pin));
 
@@ -124,7 +123,6 @@ void pcint_attach(uint8_t pin, ISRHandler isr, volatile void *argument) {
   }
 }
 
-// Desacopla rotina da interrupção PC interrupt sob o pino pin.
 void pcint_detach(uint8_t pin) {
   uintptr_t pcint = portOutputRegister(digitalPinToPort(pin)) - &PORTB;
 
