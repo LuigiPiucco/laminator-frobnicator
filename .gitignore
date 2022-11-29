@@ -1,0 +1,16 @@
+.DS_Store
+.idea
+libc
+*.log
+*.png
+*.webp
+*.pdf
+*.tex
+*.workspace
+*.tex.*
+compile_commands.json
+tmp/
+build/
+Project Backups/
+ATMEGA328P_*/
+.auctex-auto/
