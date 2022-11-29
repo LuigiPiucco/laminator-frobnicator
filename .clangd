@@ -1,0 +1,22 @@
+InlayHints:
+  Enabled: Yes
+  ParameterNames: Yes
+  DeducedTypes: Yes
+Hover:
+  ShowAKA: Yes
+Diagnostics:
+  ClangTidy:
+    Add: 'bugprone-*'
+  UnusedIncludes: Strict
+---
+If:
+  PathMatch: '.*\.(c|h)'
+CompileFlags:
+  Compiler: avr-gcc
+---
+If:
+  PathMatch: '.*\.(cpp|ino|hpp)'
+CompileFlags:
+  Remove: [ "-w" ]
+  Add: [ "-Wall", "-isystem", "libc", "-isystem", "deps", "-include", "Arduino.h", "-include", "avr/io.h" ]
+  Compiler: avr-g++
