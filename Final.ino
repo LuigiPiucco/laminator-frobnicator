@@ -13,8 +13,8 @@ void setup() {
   laminator_cyl.setup();
   extractor_cyl.setup();
 
-  laminator_cyl.speed_setpoint = 1200;
-  extractor_cyl.speed_setpoint = 1200;
+  laminator_cyl.speed_setpoint = 200;
+  extractor_cyl.speed_setpoint = 200;
 }
 
 void loop() {

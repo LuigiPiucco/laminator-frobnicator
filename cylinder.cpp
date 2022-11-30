@@ -18,16 +18,20 @@ void Cylinder::setup() {
 
 void Cylinder::run() {
   uint64_t current_time = millis();
+  if (!current_time) {
+    return;
+  }
   double ticks_per_moment = (double)this->pulse_count /
                             (double)(current_time - this->last_pulse_check);
   double circumference_length = PI * (double)this->diameter;
   double circumference_per_tick = circumference_length / 24;
   double circumference_per_moment = ticks_per_moment * circumference_per_tick;
+  serial_print("Circunferência: ");
+  serial_println((uint32_t)circumference_per_moment, DEC);
 
   double power_ratio =
       max(1 - circumference_per_moment / this->speed_setpoint, 0);
   this->current_power = lround(0xFF * power_ratio);
-  serial_println(this->current_power, DEC);
   analogWrite(this->motor_pin, this->current_power);
 
   this->pulse_count = 0;
