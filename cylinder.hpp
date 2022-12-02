@@ -49,6 +49,8 @@ public:
   // Retorna o último nível de potência atribuído.
   uint8_t power() const;
 
+  uint32_t pulses() const;
+
 private:
   // ---
   // API privada e estado interno.

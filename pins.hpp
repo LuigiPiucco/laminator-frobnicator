@@ -3,18 +3,18 @@
 
 // Atribuições de pinos para cada periférico.
 
-constexpr byte laminator_encoder = 2;
-constexpr byte extractor_encoder = 3;
-constexpr byte reset_quantity_btn = 4;
-constexpr byte course_ender_sensor = 5;
+constexpr uint8_t laminator_encoder = 2;
+constexpr uint8_t extractor_encoder = 3;
+constexpr uint8_t reset_quantity_btn = 4;
+constexpr uint8_t course_ender_sensor = 5;
 
-constexpr byte paper_sensor = 6;
+constexpr uint8_t paper_sensor = 6;
 
-constexpr byte laminator_motor = 9;
-constexpr byte extractor_motor = 10;
+constexpr uint8_t laminator_motor = 9;
+constexpr uint8_t extractor_motor = 10;
 
-constexpr byte on_led = 8;
-constexpr byte problem_led = 11;
-constexpr byte paper_led = 12;
+constexpr uint8_t on_led = 8;
+constexpr uint8_t problem_led = 11;
+constexpr uint8_t paper_led = 12;
 
 #endif // PINS_H_
