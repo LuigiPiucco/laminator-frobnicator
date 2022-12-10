@@ -17,11 +17,8 @@ void Cylinder::setup() {
                this);
 }
 
-void Cylinder::run() {
-  uint64_t current_time = millis();
-  if (!current_time) {
-    return;
-  }
+double Cylinder::run() {
+  uint32_t current_time = millis();
   double ticks_per_moment = (double)this->pulse_count /
                             (double)(current_time - this->last_pulse_check);
   double circumference_length = PI * (double)this->diameter;
@@ -37,8 +34,13 @@ void Cylinder::run() {
   serial_println((uint32_t)this->current_power, DEC);
   analogWrite(this->motor_pin, this->current_power);
 
+  double circumference_spun =
+      circumference_per_tick * (double)this->pulse_count;
+
   this->pulse_count = 0;
   this->last_pulse_check = current_time;
+
+  return circumference_spun;
 }
 void Cylinder::stop() {
   this->current_power = 0;

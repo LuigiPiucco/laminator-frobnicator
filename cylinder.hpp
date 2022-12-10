@@ -41,7 +41,7 @@ public:
   // A lógica é que menos potência deve ser fornecida quando a velocidade já é
   // próxima do requerido, e mais quando for menor. No caso da velocidade estar
   // maior, nada é aplicado.
-  void run();
+  double run();
   // Pára o motor (deixa de aplicar potência), mas não limpa o armazenamento do
   // último cálculo.
   void stop();
