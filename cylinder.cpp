@@ -28,10 +28,6 @@ double Cylinder::run() {
   double power_ratio =
       0x17 * max(1.0 - circumference_per_moment / this->speed_setpoint, 0);
   this->current_power = lround(power_ratio);
-  serial_write("Vel. para ");
-  serial_print(this->diameter, DEC);
-  serial_write(": ");
-  serial_println((uint32_t)this->current_power, DEC);
   analogWrite(this->motor_pin, this->current_power);
 
   double circumference_spun =
@@ -43,7 +39,7 @@ double Cylinder::run() {
   return circumference_spun;
 }
 void Cylinder::stop() {
-  this->current_power = 0;
+  this->current_power = 0.0;
   analogWrite(this->motor_pin, this->current_power);
 }
 uint8_t Cylinder::power() const { return this->current_power; }

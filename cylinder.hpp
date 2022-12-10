@@ -16,6 +16,7 @@ constexpr uint32_t laminator_cylinder_diameter = 100 /* mm */;
 // Diâmetro do cilindro de extração do papel.
 constexpr uint32_t extractor_cylinder_diameter = 50 /* mm */;
 
+// Modelo de um cilindro de laminação com encoder.
 class Cylinder {
 public:
   // Construtor que só inicializa as variáveis-membro.
@@ -66,7 +67,7 @@ private:
   uint32_t pulse_count = 0;
   // Tempo (em milisegundos desde o início) em que foi calculada a velocidade
   // mais recente.
-  uint64_t last_pulse_check = 0;
+  uint32_t last_pulse_check = 0;
 
   // Potência atualmente escrita no pino PWM.
   uint8_t current_power = 0;
@@ -80,7 +81,7 @@ private:
   // saber a que objeto pertence. Por isso o qualificador `static`; o objeto
   // que corresponde dono da função-membro é passado como argumento através da
   // API PCINT.
-  static void handle_encoder(Cylinder *self);
+  static void handle_encoder(volatile Cylinder *self);
 };
 
 #endif // CYLINDER_H_
