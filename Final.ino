@@ -86,7 +86,7 @@ void loop() {
 
   int16_t desired_speed = speed_pot.read();
 
-  if (!paper_detector.read() && (!auto_mode.read() || !pedal.read())) {
+  if (!paper_detector.read() && !(auto_mode.read() && pedal.read())) {
     laminator_cyl.speed_setpoint = desired_speed;
     double laminator_spun = laminator_cyl.run();
     extractor_cyl.speed_setpoint = desired_speed;
