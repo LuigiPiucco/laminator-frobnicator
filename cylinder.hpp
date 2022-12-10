@@ -76,12 +76,11 @@ private:
   // encoder.
 
   // Auxiliar estático para permitir passagem a pcint_attach. Não podemos passar
-  // Cylinder::count_pulse diretamente porque o ponteiro para função precisa
-  // saber a que objeto pertence. Por isso essa camada de indireção; o objeto
-  // que corresponde dono da função-membro é passado como argumento.
-  static void handle_encoder(Cylinder *volatile self);
-  // Incrementa o contador de pulsos por 1.
-  void count_pulse();
+  // uma função-membro diretamente porque o ponteiro para função precisa
+  // saber a que objeto pertence. Por isso o qualificador `static`; o objeto
+  // que corresponde dono da função-membro é passado como argumento através da
+  // API PCINT.
+  static void handle_encoder(Cylinder *self);
 };
 
 #endif // CYLINDER_H_

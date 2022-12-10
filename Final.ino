@@ -1,4 +1,5 @@
 #include "cylinder.hpp"
+#include "pc_interrupts.hpp"
 #include "pins.hpp"
 #include "serial_logging.hpp"
 
@@ -8,6 +9,10 @@ Cylinder extractor_cyl =
     Cylinder(extractor_motor, extractor_encoder, extractor_cylinder_diameter);
 
 void setup() {
+  PCMSK0 = 0;
+  PCMSK1 = 0;
+  PCMSK2 = 0;
+
   serial_begin(9600);
 
   laminator_cyl.setup();

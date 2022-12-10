@@ -13,7 +13,8 @@ Cylinder::~Cylinder() { pcint_detach(this->encoder_pin); }
 void Cylinder::setup() {
   pinMode(this->motor_pin, OUTPUT);
   pinMode(this->encoder_pin, INPUT_PULLUP);
-  pcint_attach(this->encoder_pin, (ISRHandler)&Cylinder::handle_encoder, this);
+  pcint_attach(this->encoder_pin, (ISRHandler *)&Cylinder::handle_encoder,
+               this);
 }
 
 void Cylinder::run() {
@@ -46,5 +47,4 @@ void Cylinder::stop() {
 uint8_t Cylinder::power() const { return this->current_power; }
 uint32_t Cylinder::pulses() const { return this->pulse_count; }
 
-void Cylinder::count_pulse() { ++this->pulse_count; }
-void Cylinder::handle_encoder(Cylinder *volatile self) { self->count_pulse(); }
+void Cylinder::handle_encoder(volatile Cylinder *self) { ++self->pulse_count; }

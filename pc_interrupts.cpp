@@ -32,11 +32,11 @@ static volatile uint8_t PCINT2_last_state = *PCINT_ports[2];
 // passado à rotina em sua invocação.
 
 // Callbacks da PORTB.
-static ISRHandler PCINT0_interrupt_vector[8] = {NULL};
+static ISRHandler *PCINT0_interrupt_vector[8] = {NULL};
 // Callbacks da PORTC.
-static ISRHandler PCINT1_interrupt_vector[8] = {NULL};
+static ISRHandler *PCINT1_interrupt_vector[8] = {NULL};
 // Callbacks da PORTD.
-static ISRHandler PCINT2_interrupt_vector[8] = {NULL};
+static ISRHandler *PCINT2_interrupt_vector[8] = {NULL};
 // Argumentos da PORTB.
 static volatile void *PCINT0_argument_vector[8] = {NULL};
 // Arguments da PORTC.
@@ -69,7 +69,7 @@ static volatile void *PCINT2_argument_vector[8] = {NULL};
     uint8_t current_pins = *PCINT_ports[num];                                  \
     uint8_t changed_pins = PCINT_IDENT(num, last_state) ^ current_pins;        \
     for (uint8_t i = 0; i < 8; ++i) {                                          \
-      if (changed_pins & (1 << i)) {                                           \
+      if (changed_pins & (1 << i) && PCMSK##num & (1 << i)) {                  \
         PCINT_IDENT(num, interrupt_vector)                                     \
         [i](PCINT_IDENT(num, argument_vector)[i]);                             \
       }                                                                        \
@@ -90,7 +90,7 @@ ISR(PCINT2_vect, ISR_NOBLOCK) PCISR_BODY(2);
 // ---
 // API pública. Ver cabeçalho para documentação.
 
-void pcint_attach(uint8_t pin, ISRHandler isr, volatile void *argument) {
+void pcint_attach(uint8_t pin, ISRHandler *isr, volatile void *argument) {
   volatile uint8_t *pcint = portInputRegister(digitalPinToPort(pin));
 
   if (pcint == &PINB) {
