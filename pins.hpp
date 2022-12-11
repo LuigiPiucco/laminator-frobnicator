@@ -16,8 +16,8 @@ constexpr uint8_t course_ender_sensor = 4;
 
 constexpr uint8_t paper_sensor = 5;
 
-constexpr uint8_t laminator_motor = 10;
-constexpr uint8_t extractor_motor = 9;
+constexpr uint8_t laminator_motor = 9;
+constexpr uint8_t extractor_motor = 10;
 
 constexpr uint8_t on_led = 11;
 constexpr uint8_t problem_led = 12;
