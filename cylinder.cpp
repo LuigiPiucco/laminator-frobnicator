@@ -23,7 +23,7 @@ double Cylinder::run() {
                             (double)(current_time - this->last_pulse_check);
   double circumference_length = PI * (double)this->diameter;
   double circumference_per_tick = circumference_length / 24;
-  double circumference_per_moment = ticks_per_moment * circumference_per_tick;
+  double circumference_per_moment = circumference_per_tick * ticks_per_moment / (60.0*10e3);
 
   double power_ratio =
       0x17 * max(1.0 - circumference_per_moment / this->speed_setpoint, 0);

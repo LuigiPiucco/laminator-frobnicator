@@ -12,7 +12,7 @@ Cylinder laminator_cyl =
     Cylinder{laminator_motor, laminator_encoder, laminator_cylinder_diameter};
 Cylinder extractor_cyl =
     Cylinder{extractor_motor, extractor_encoder, extractor_cylinder_diameter};
-AnalogReadout speed_pot = AnalogReadout{speed_potentiometer, {0, 80}};
+AnalogReadout speed_pot = AnalogReadout{speed_potentiometer, {0, 100}};
 DigitalIO course_ender = DigitalIO{course_ender_sensor};
 DigitalIO auto_mode = DigitalIO{auto_mode_sensor};
 DigitalIO pedal = DigitalIO{pedal_sensor};
@@ -36,11 +36,11 @@ void stall_while_blocked(volatile void *) {
 void repaint() {
   lcd.setCursor(0, 0);
   char vel_msg[17];
-  snprintf(vel_msg, 17, "Vel.: %5d mm/s", speed_pot.read());
+  snprintf(vel_msg, 17, "Vel.: %3d cm/min", speed_pot.read());
   lcd.print(vel_msg);
   lcd.setCursor(0, 1);
-  char float_msg[6];
-  dtostrf(paper_length / 1000.0, 5, 2, float_msg);
+  char float_msg[7];
+  dtostrf(paper_length / 1000.0, 6, 2, float_msg);
   char done_msg[17];
   snprintf(done_msg, 17, "Pronto: %s m", float_msg);
   lcd.print(done_msg);
